@@ -69,7 +69,7 @@ sudo pip3 install docker-compose
 To confirm that Docker Compose was installed correctly, check the version:
 
 ```
-docker compose verison
+docker compose version
 ```
 
 ## Set up the Grafana stack
