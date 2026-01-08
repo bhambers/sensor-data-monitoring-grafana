@@ -1,0 +1,11 @@
+[project]
+name = "sensor-data-monitoring-grafana"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "adafruit-dht>=1.4.0",
+    "flask>=3.1.2",
+    "prometheus-client>=0.23.1",
+]
