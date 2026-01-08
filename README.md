@@ -32,7 +32,7 @@ sudo apt upgrade -y
 Install Git with a single command:
 
 ``` 
-sudo apt install -y git
+sudo apt install -y git build-essential vim starship python3-dev
 ```
 
 To confirm Git is installed correctly, check the version:
