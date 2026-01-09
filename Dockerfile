@@ -1,11 +1,13 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-slim
+FROM python:3.13-trixie
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
 # Install required system dependencies, including gcc and other build tools
 RUN apt-get update && apt-get install -y \
+    curl \
     gcc \
     python3-dev \
     libffi-dev \
@@ -14,9 +16,10 @@ RUN apt-get update && apt-get install -y \
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel
-RUN pip install --no-cache-dir -r requirements.txt
+ENV UV_NO_DEV=1
+
+# Install any needed packages specified 
+RUN uv sync --locked
 
 # Expose the application's port
 EXPOSE 5000
