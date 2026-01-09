@@ -1,5 +1,7 @@
 # Use an official Python runtime as a parent image
-FROM python:3.13-trixie
+FROM python:3.13-slim-trixie
+
+# Download the latest installer
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Set the working directory in the container
@@ -7,7 +9,6 @@ WORKDIR /usr/src/app
 
 # Install required system dependencies, including gcc and other build tools
 RUN apt-get update && apt-get install -y \
-    curl \
     gcc \
     python3-dev \
     libffi-dev \
@@ -28,4 +29,5 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches
-CMD ["python", "./app.py"]
+# CMD ["python", "./app.py"]
+CMD ["uv", "run", "app.py"]
