@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "adafruit-circuitpython-dht>=4.0.10",
+    "adafruit-circuitpython-hcsr04>=0.4.23",
     "flask>=3.1.2",
     "prometheus-client>=0.23.1",
     "rpi-gpio>=0.7.1",

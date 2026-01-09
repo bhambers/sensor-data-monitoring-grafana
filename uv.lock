@@ -57,6 +57,18 @@ wheels = [
 ]
 
 [[package]]
+name = "adafruit-circuitpython-hcsr04"
+version = "0.4.23"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "adafruit-blinka" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c7/62/61b6410512912169b73e7087d08bce13f510a1f4bc64359117b330d85469/adafruit_circuitpython_hcsr04-0.4.23.tar.gz", hash = "sha256:9f03d534ed70bab2c0edbb245432bae78558b8e62f239f69657c3d05a2d7194d", size = 281270, upload-time = "2025-10-20T21:46:11.997Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c5/59/309e0ea4ccb52a913c6ac0702d2b1ff809feb45efaff3b3222d2c55c0496/adafruit_circuitpython_hcsr04-0.4.23-py3-none-any.whl", hash = "sha256:96e9a11b0ba504672ace5056e0810454283858e3597ec5867bd35940597840cd", size = 6965, upload-time = "2025-10-20T21:46:10.671Z" },
+]
+
+[[package]]
 name = "adafruit-circuitpython-requests"
 version = "4.1.15"
 source = { registry = "https://pypi.org/simple" }
@@ -285,6 +297,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "adafruit-circuitpython-dht" },
+    { name = "adafruit-circuitpython-hcsr04" },
     { name = "flask" },
     { name = "prometheus-client" },
     { name = "rpi-gpio" },
@@ -293,6 +306,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "adafruit-circuitpython-dht", specifier = ">=4.0.10" },
+    { name = "adafruit-circuitpython-hcsr04", specifier = ">=0.4.23" },
     { name = "flask", specifier = ">=3.1.2" },
     { name = "prometheus-client", specifier = ">=0.23.1" },
     { name = "rpi-gpio", specifier = ">=0.7.1" },
