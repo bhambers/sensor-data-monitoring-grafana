@@ -1,12 +1,16 @@
-import Adafruit_DHT as dht_sensor
+import adafruit_dht as dht_sensor
 import time
+import board
 from flask import Flask, Response
 from prometheus_client import Counter, Gauge, start_http_server, generate_latest
 
 content_type = str('text/plain; version=0.0.4; charset=utf-8')
+dhtDevice = dht_sensor.DHT22(board.D4)
 
 def get_temperature_readings():
-    humidity, temperature = dht_sensor.read_retry(dht_sensor.DHT22, 4)
+    temperature = dhtDevice.temperature
+    humidity = dhtDevice.humidity
+
     humidity = format(humidity, ".2f")
     temperature = format(temperature, ".2f")
     if all(v is not None for v in [humidity, temperature]):
@@ -14,7 +18,9 @@ def get_temperature_readings():
         return response
     else:
         time.sleep(0.2)
-        humidity, temperature = dht_sensor.read_retry(dht_sensor.DHT22, 4)
+        temperature = dhtDevice.temperature
+        humidity = dhtDevice.humidity
+
         humidity = format(humidity, ".2f")
         temperature = format(temperature, ".2f")
         response = {"temperature": temperature, "humidity": humidity}
@@ -37,6 +43,7 @@ current_temperature = Gauge(
 @app.route('/metrics')
 def metrics():
     metrics = get_temperature_readings()
+    print(metrics)
     current_humidity.labels('study').set(metrics['humidity'])
     current_temperature.labels('study').set(metrics['temperature'])
     return Response(generate_latest(), mimetype=content_type)
